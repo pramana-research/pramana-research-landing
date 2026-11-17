@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>gpt-oss-20b on Filing-Evidence · Pramana Research</title>
+<meta name="description" content="gpt-oss-20b (OpenAI) on the Filing-Evidence benchmark: 74.4% accuracy with checkable evidence in the plain setup, 112 confident-wrong answers per 1,000.">
+<meta property="og:title" content="gpt-oss-20b on Filing-Evidence · Pramana Research">
+<meta property="og:description" content="gpt-oss-20b (OpenAI) on the Filing-Evidence benchmark: 74.4% accuracy with checkable evidence in the plain setup, 112 confident-wrong answers per 1,000.">
+<meta property="og:type" content="article">
+<meta name="author" content="Krishna Nandula, Pramana Research">
+<meta name="theme-color" content="#FAFAF7">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Crect x='1' y='1' width='26' height='26' rx='6' fill='%23FAFAF7' stroke='%232E3F9E' stroke-width='2'/%3E%3Cpath d='M8 14.5l4 4 8-9' fill='none' stroke='%232E3F9E' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/research/assets/research.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="in">
+    <a class="brand" href="/">
+      <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect x="1" y="1" width="26" height="26" rx="6" fill="none" stroke="#2E3F9E" stroke-width="2"></rect><path d="M8 14.5l4 4 8-9" fill="none" stroke="#2E3F9E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      <span>Pramana Research</span>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="/">Home</a>
+      <a href="/research" aria-current="page">Research</a>
+    </nav>
+  </div>
+</header>
+<main>
+<div class="wrap">
+<div class="titleblock">
+  <p class="eyebrow"><a href="/research/filing-evidence" style="text-decoration:none">Filing-Evidence</a> · Results per model</p>
+  <h1>gpt-oss-20b</h1>
+  <p class="subtitle">OpenAI · 20.9B parameters · mxfp4 · has a thinking mode</p>
+  <div class="byline"><span><strong>Krishna Nandula</strong> · Pramana Research</span><span>17 November 2026</span><span>Filing-Evidence v1.0</span></div>
+  <div class="actions">
+    <a class="btn primary" href="/research/filing-evidence/pdf/gpt-oss-20b.pdf" download>Download PDF</a>
+    <a class="btn" href="/research/filing-evidence">Read the paper</a>
+    <a class="btn" href="https://huggingface.co/datasets/pramana-research/filing-evidence/tree/main/results/main/gpt-oss-20b">Every answer</a>
+  </div>
+</div>
+
+<div class="paper">
+<nav class="toc" aria-label="Contents">
+  <p>On this page</p>
+  <ol>
+    <li><a href="#scorecard">Scorecard</a></li>
+    <li><a href="#outcomes">Where the answers go</a></li>
+    <li><a href="#content">By kind of content</a></li>
+    <li><a href="#setups">Retry and thinking</a></li>
+    <li><a href="#notes">What stands out</a></li>
+    <li><a href="#examples">Real answers</a></li>
+    <li><a href="#run">How it was run</a></li>
+  </ol>
+</nav>
+<article class="body">
+
+<section class="brief" aria-labelledby="sc" style="margin-bottom:8px">
+  <h2 id="sc" style="margin-top:0">In brief</h2>
+  <div class="stats">
+    <div class="stat"><div class="v">74.4%</div><div class="l">accuracy with checkable evidence, plain setup (rank 2 of 10)</div></div>
+    <div class="stat"><div class="v">80.7%</div><div class="l">best setup: thinking</div></div>
+    <div class="stat"><div class="v bad">112</div><div class="l">wrong answers per 1,000 that passed every check (plain)</div></div>
+    <div class="stat"><div class="v">112/125</div><div class="l">correct "not found" when the answer wasn't on the pages</div></div>
+  </div>
+</section>
+
+<h2 id="scorecard">Scorecard</h2>
+<div class="tablewrap"><table>
+  <thead><tr><th>Setup</th><th class="n">Accuracy</th><th class="n">Conf.-wrong</th><th class="n">Abstention</th><th class="n">Ign. scale</th><th class="n">Tokens</th><th class="n">Time</th></tr></thead>
+  <tbody>
+  <tr><td>C1 · Plain</td>
+    <td class="n">74.4%<br><span class="ci">71.4–77.2%</span></td>
+    <td class="n">112<br><span class="ci">9.4–13.3%</span></td>
+    <td class="n">112</td>
+    <td class="n">80.9%</td>
+    <td class="n">109</td>
+    <td class="n">3.3 min</td></tr>
+  <tr><td>C2 · Check + retry</td>
+    <td class="n">77.4%<br><span class="ci">74.5–80.0%</span></td>
+    <td class="n">118<br><span class="ci">9.9–13.9%</span></td>
+    <td class="n">112</td>
+    <td class="n">84.2%</td>
+    <td class="n">120</td>
+    <td class="n">0.4 min</td></tr>
+  <tr><td>C3 · Thinking</td>
+    <td class="n">80.7%<br><span class="ci">77.9–83.2%</span></td>
+    <td class="n">56<br><span class="ci">4.3–7.2%</span></td>
+    <td class="n">106</td>
+    <td class="n">84.5%</td>
+    <td class="n">1,904</td>
+    <td class="n">32.1 min</td></tr>
+  </tbody>
+</table></div>
+<p class="muted">Accuracy over the 875 answerable questions; confident-wrong per 1,000 answers; abstention out of 125; tokens are generated tokens per answer (mean). Intervals are 95% Wilson intervals. "Ign. scale" (ignoring scale) counts answers with the right digits and valid evidence whatever scale was stated (a secondary metric). C2 tokens include the retry; C2 run time counts only the retries, because C2 reuses C1's first answers.</p>
+
+<h2 id="outcomes">Where the answers go</h2>
+<figure>
+  <div class="canvas"><svg class="chart" viewBox="0 0 760 176" role="img" aria-labelledby="t d" xmlns="http://www.w3.org/2000/svg"><title>Where the answers go (875 answerable questions)</title><desc>Each bar splits the answerable questions by outcome, from correct (left) through missed to wrong answers caught by the checker and wrong answers that passed every check (right).</desc><line x1="170.0" x2="170.0" y1="50" y2="146" stroke="#E7E8E3"/><text x="170.0" y="162.0" font-size="11" text-anchor="middle" fill="#5B6472" font-weight="400" class="num" >0%</text><line x1="311.5" x2="311.5" y1="50" y2="146" stroke="#E7E8E3"/><text x="311.5" y="162.0" font-size="11" text-anchor="middle" fill="#5B6472" font-weight="400" class="num" >25%</text><line x1="453.0" x2="453.0" y1="50" y2="146" stroke="#E7E8E3"/><text x="453.0" y="162.0" font-size="11" text-anchor="middle" fill="#5B6472" font-weight="400" class="num" >50%</text><line x1="594.5" x2="594.5" y1="50" y2="146" stroke="#E7E8E3"/><text x="594.5" y="162.0" font-size="11" text-anchor="middle" fill="#5B6472" font-weight="400" class="num" >75%</text><line x1="736.0" x2="736.0" y1="50" y2="146" stroke="#E7E8E3"/><text x="736.0" y="162.0" font-size="11" text-anchor="middle" fill="#5B6472" font-weight="400" class="num" >100%</text><text x="158.0" y="75.0" font-size="13" text-anchor="end" fill="#12161C" font-weight="500" class="" >Plain (C1)</text><path d="M170.0,62.0 h419.1 v18.0 h-419.1 z" fill="#2E3F9E"><title>Plain (C1): Correct 651 of 875 (74.4%)</title></path><text x="176.0" y="75.0" font-size="11" text-anchor="start" fill="#FFFFFF" font-weight="500" class="num" >74%</text><path d="M591.1,62.0 h38.1 v18.0 h-38.1 z" fill="#8592D6"><title>Plain (C1): Right value, unusable evidence 62 of 875 (7.1%)</title></path><path d="M631.2,62.0 h7.1 v18.0 h-7.1 z" fill="#D9D6CE"><title>Plain (C1): Missed (said not found) 14 of 875 (1.6%)</title></path><path d="M640.3,62.0 h0.5 v18.0 h-0.5 z" fill="#A7A398"><title>Plain (C1): Unparseable 3 of 875 (0.3%)</title></path><path d="M642.2,62.0 h19.3 v18.0 h-19.3 z" fill="#E57C62"><title>Plain (C1): Wrong, caught by the checker 33 of 875 (3.8%)</title></path><path d="M663.6,62.0 h68.4 a4,4 0 0 1 4,4 v10.0 a4,4 0 0 1 -4,4 h-68.4 z" fill="#B3302A"><title>Plain (C1): Wrong, passed every check 112 of 875 (12.8%)</title></path><text x="669.6" y="75.0" font-size="11" text-anchor="start" fill="#FFFFFF" font-weight="500" class="num" >13%</text><text x="158.0" y="105.0" font-size="13" text-anchor="end" fill="#12161C" font-weight="500" class="" >Check + retry (C2)</text><path d="M170.0,92.0 h435.9 v18.0 h-435.9 z" fill="#2E3F9E"><title>Check + retry (C2): Correct 677 of 875 (77.4%)</title></path><text x="176.0" y="105.0" font-size="11" text-anchor="start" fill="#FFFFFF" font-weight="500" class="num" >77%</text><path d="M607.9,92.0 h26.5 v18.0 h-26.5 z" fill="#8592D6"><title>Check + retry (C2): Right value, unusable evidence 44 of 875 (5.0%)</title></path><path d="M636.4,92.0 h9.0 v18.0 h-9.0 z" fill="#D9D6CE"><title>Check + retry (C2): Missed (said not found) 17 of 875 (1.9%)</title></path><path d="M647.4,92.0 h0.5 v18.0 h-0.5 z" fill="#A7A398"><title>Check + retry (C2): Unparseable 1 of 875 (0.1%)</title></path><path d="M648.0,92.0 h9.6 v18.0 h-9.6 z" fill="#E57C62"><title>Check + retry (C2): Wrong, caught by the checker 18 of 875 (2.1%)</title></path><path d="M659.7,92.0 h72.3 a4,4 0 0 1 4,4 v10.0 a4,4 0 0 1 -4,4 h-72.3 z" fill="#B3302A"><title>Check + retry (C2): Wrong, passed every check 118 of 875 (13.5%)</title></path><text x="665.7" y="105.0" font-size="11" text-anchor="start" fill="#FFFFFF" font-weight="500" class="num" >13%</text><text x="158.0" y="135.0" font-size="13" text-anchor="end" fill="#12161C" font-weight="500" class="" >Thinking (C3)</text><path d="M170.0,122.0 h454.7 v18.0 h-454.7 z" fill="#2E3F9E"><title>Thinking (C3): Correct 706 of 875 (80.7%)</title></path><text x="176.0" y="135.0" font-size="11" text-anchor="start" fill="#FFFFFF" font-weight="500" class="num" >81%</text><path d="M626.7,122.0 h6.4 v18.0 h-6.4 z" fill="#8592D6"><title>Thinking (C3): Right value, unusable evidence 13 of 875 (1.5%)</title></path><path d="M635.1,122.0 h4.5 v18.0 h-4.5 z" fill="#D9D6CE"><title>Thinking (C3): Missed (said not found) 10 of 875 (1.1%)</title></path><path d="M641.6,122.0 h60.7 v18.0 h-60.7 z" fill="#A7A398"><title>Thinking (C3): Unparseable 97 of 875 (11.1%)</title></path><path d="M704.3,122.0 h0.6 v18.0 h-0.6 z" fill="#E57C62"><title>Thinking (C3): Wrong, caught by the checker 4 of 875 (0.5%)</title></path><path d="M706.9,122.0 h32.2 a4,4 0 0 1 4,4 v10.0 a4,4 0 0 1 -4,4 h-32.2 z" fill="#B3302A"><title>Thinking (C3): Wrong, passed every check 56 of 875 (6.4%)</title></path><text x="712.9" y="135.0" font-size="11" text-anchor="start" fill="#FFFFFF" font-weight="500" class="num" >6%</text><rect x="0.0" y="11.0" width="10" height="10" rx="2" fill="#2E3F9E"/><text x="15.0" y="20.0" font-size="12" text-anchor="start" fill="#3D4452" font-weight="400" class="" >Correct</text><rect x="75.2" y="11.0" width="10" height="10" rx="2" fill="#8592D6"/><text x="90.2" y="20.0" font-size="12" text-anchor="start" fill="#3D4452" font-weight="400" class="" >Right, bad evidence</text><rect x="229.6" y="11.0" width="10" height="10" rx="2" fill="#D9D6CE"/><text x="244.6" y="20.0" font-size="12" text-anchor="start" fill="#3D4452" font-weight="400" class="" >Missed</text><rect x="298.2" y="11.0" width="10" height="10" rx="2" fill="#A7A398"/><text x="313.2" y="20.0" font-size="12" text-anchor="start" fill="#3D4452" font-weight="400" class="" >Unparseable</text><rect x="399.8" y="11.0" width="10" height="10" rx="2" fill="#E57C62"/><text x="414.8" y="20.0" font-size="12" text-anchor="start" fill="#3D4452" font-weight="400" class="" >Wrong, caught</text><rect x="514.6" y="11.0" width="10" height="10" rx="2" fill="#B3302A"/><text x="529.6" y="20.0" font-size="12" text-anchor="start" fill="#3D4452" font-weight="400" class="" >Wrong, passed checks</text></svg></div>
+  <figcaption><b>Figure 1.</b> Outcomes of the 875 answerable questions in each setup.</figcaption>
+  <details><summary>Show the data</summary>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Outcome</th><th class="n">C1</th><th class="n">C2</th><th class="n">C3</th></tr></thead>
+    <tbody>
+    <tr><td>Correct</td><td class="n">651</td><td class="n">677</td><td class="n">706</td></tr>
+    <tr><td>Right value, unusable evidence</td><td class="n">62</td><td class="n">44</td><td class="n">13</td></tr>
+    <tr><td>Missed (said not found)</td><td class="n">14</td><td class="n">17</td><td class="n">10</td></tr>
+    <tr><td>Unparseable</td><td class="n">3</td><td class="n">1</td><td class="n">97</td></tr>
+    <tr><td>Wrong, caught by the checker</td><td class="n">33</td><td class="n">18</td><td class="n">4</td></tr>
+    <tr><td>Wrong, passed every check</td><td class="n">112</td><td class="n">118</td><td class="n">56</td></tr>
+    <tr><td>Correctly said not found</td><td class="n">112</td><td class="n">112</td><td class="n">106</td></tr>
+    <tr><td>Invented an answer</td><td class="n">13</td><td class="n">13</td><td class="n">8</td></tr>
+    </tbody>
+  </table></div>
+  </details>
+</figure>
+<p>In the plain setup, 651 answers were correct and 112 were
+wrong while passing every check: 57 scale or unit; 45 another period or column of the right line; 10 a different item.
+A further 62 had the right value with evidence the checker could not accept, and
+33 wrong answers were rejected by the checker.</p>
+
+<h2 id="content">By kind of content</h2>
+<figure>
+  <div class="canvas"><svg class="chart" viewBox="0 0 760 286" role="img" aria-labelledby="t d" xmlns="http://www.w3.org/2000/svg"><title>Accuracy by kind of content, per setup</title><desc>One row per slice; dots are this model&#x27;s setups. S8 shows correct &#x27;not found&#x27; answers.</desc><line x1="230.0" x2="230.0" y1="38" y2="252" stroke="#E7E8E3"/><text x="230.0" y="268.0" font-size="11" text-anchor="middle" fill="#5B6472" font-weight="400" class="num" >0%</text><line x1="330.0" x2="330.0" y1="38" y2="252" stroke="#E7E8E3"/><text x="330.0" y="268.0" font-size="11" text-anchor="middle" fill="#5B6472" font-weight="400" class="num" >20%</text><line x1="430.0" x2="430.0" y1="38" y2="252" stroke="#E7E8E3"/><text x="430.0" y="268.0" font-size="11" text-anchor="middle" fill="#5B6472" font-weight="400" class="num" >40%</text><line x1="530.0" x2="530.0" y1="38" y2="252" stroke="#E7E8E3"/><text x="530.0" y="268.0" font-size="11" text-anchor="middle" fill="#5B6472" font-weight="400" class="num" >60%</text><line x1="630.0" x2="630.0" y1="38" y2="252" stroke="#E7E8E3"/><text x="630.0" y="268.0" font-size="11" text-anchor="middle" fill="#5B6472" font-weight="400" class="num" >80%</text><line x1="730.0" x2="730.0" y1="38" y2="252" stroke="#E7E8E3"/><text x="730.0" y="268.0" font-size="11" text-anchor="middle" fill="#5B6472" font-weight="400" class="num" >100%</text><text x="218.0" y="61.0" font-size="12.5" text-anchor="end" fill="#12161C" font-weight="500" class="" >S1 · Main statements, current period</text><g class="mark"><circle cx="714.0" cy="57.0" r="6.5" fill="#FAFAF7"/><circle cx="714.0" cy="57.0" r="4.5" fill="#8F9BDD"><title>S1 Main statements, current period, Plain: 96.8% (121 of 125)</title></circle><circle cx="714.0" cy="57.0" r="11.5" fill="transparent"><title>S1 Main statements, current period, Plain: 96.8% (121 of 125)</title></circle></g><g class="mark"><circle cx="714.0" cy="57.0" r="6.5" fill="#FAFAF7"/><circle cx="714.0" cy="57.0" r="4.5" fill="#5466C4"><title>S1 Main statements, current period, Check + retry: 96.8% (121 of 125)</title></circle><circle cx="714.0" cy="57.0" r="11.5" fill="transparent"><title>S1 Main statements, current period, Check + retry: 96.8% (121 of 125)</title></circle></g><g class="mark"><circle cx="698.0" cy="57.0" r="6.5" fill="#FAFAF7"/><circle cx="698.0" cy="57.0" r="4.5" fill="#1F2C73"><title>S1 Main statements, current period, Thinking: 93.6% (117 of 125)</title></circle><circle cx="698.0" cy="57.0" r="11.5" fill="transparent"><title>S1 Main statements, current period, Thinking: 93.6% (117 of 125)</title></circle></g><text x="218.0" y="87.0" font-size="12.5" text-anchor="end" fill="#12161C" font-weight="500" class="" >S2 · Main statements, prior period</text><g class="mark"><circle cx="646.0" cy="83.0" r="6.5" fill="#FAFAF7"/><circle cx="646.0" cy="83.0" r="4.5" fill="#8F9BDD"><title>S2 Main statements, prior period, Plain: 83.2% (104 of 125)</title></circle><circle cx="646.0" cy="83.0" r="11.5" fill="transparent"><title>S2 Main statements, prior period, Plain: 83.2% (104 of 125)</title></circle></g><g class="mark"><circle cx="662.0" cy="83.0" r="6.5" fill="#FAFAF7"/><circle cx="662.0" cy="83.0" r="4.5" fill="#5466C4"><title>S2 Main statements, prior period, Check + retry: 86.4% (108 of 125)</title></circle><circle cx="662.0" cy="83.0" r="11.5" fill="transparent"><title>S2 Main statements, prior period, Check + retry: 86.4% (108 of 125)</title></circle></g><g class="mark"><circle cx="698.0" cy="83.0" r="6.5" fill="#FAFAF7"/><circle cx="698.0" cy="83.0" r="4.5" fill="#1F2C73"><title>S2 Main statements, prior period, Thinking: 93.6% (117 of 125)</title></circle><circle cx="698.0" cy="83.0" r="11.5" fill="transparent"><title>S2 Main statements, prior period, Thinking: 93.6% (117 of 125)</title></circle></g><text x="218.0" y="113.0" font-size="12.5" text-anchor="end" fill="#12161C" font-weight="500" class="" >S3 · 10-Q quarter vs year-to-date</text><g class="mark"><circle cx="582.0" cy="109.0" r="6.5" fill="#FAFAF7"/><circle cx="582.0" cy="109.0" r="4.5" fill="#8F9BDD"><title>S3 10-Q quarter vs year-to-date, Plain: 70.4% (88 of 125)</title></circle><circle cx="582.0" cy="109.0" r="11.5" fill="transparent"><title>S3 10-Q quarter vs year-to-date, Plain: 70.4% (88 of 125)</title></circle></g><g class="mark"><circle cx="602.0" cy="109.0" r="6.5" fill="#FAFAF7"/><circle cx="602.0" cy="109.0" r="4.5" fill="#5466C4"><title>S3 10-Q quarter vs year-to-date, Check + retry: 74.4% (93 of 125)</title></circle><circle cx="602.0" cy="109.0" r="11.5" fill="transparent"><title>S3 10-Q quarter vs year-to-date, Check + retry: 74.4% (93 of 125)</title></circle></g><g class="mark"><circle cx="662.0" cy="109.0" r="6.5" fill="#FAFAF7"/><circle cx="662.0" cy="109.0" r="4.5" fill="#1F2C73"><title>S3 10-Q quarter vs year-to-date, Thinking: 86.4% (108 of 125)</title></circle><circle cx="662.0" cy="109.0" r="11.5" fill="transparent"><title>S3 10-Q quarter vs year-to-date, Thinking: 86.4% (108 of 125)</title></circle></g><text x="218.0" y="139.0" font-size="12.5" text-anchor="end" fill="#12161C" font-weight="500" class="" >S4 · Notes tables</text><g class="mark"><circle cx="634.0" cy="135.0" r="6.5" fill="#FAFAF7"/><circle cx="634.0" cy="135.0" r="4.5" fill="#8F9BDD"><title>S4 Notes tables, Plain: 80.8% (101 of 125)</title></circle><circle cx="634.0" cy="135.0" r="11.5" fill="transparent"><title>S4 Notes tables, Plain: 80.8% (101 of 125)</title></circle></g><g class="mark"><circle cx="646.0" cy="135.0" r="6.5" fill="#FAFAF7"/><circle cx="646.0" cy="135.0" r="4.5" fill="#5466C4"><title>S4 Notes tables, Check + retry: 83.2% (104 of 125)</title></circle><circle cx="646.0" cy="135.0" r="11.5" fill="transparent"><title>S4 Notes tables, Check + retry: 83.2% (104 of 125)</title></circle></g><g class="mark"><circle cx="646.0" cy="135.0" r="6.5" fill="#FAFAF7"/><circle cx="646.0" cy="135.0" r="4.5" fill="#1F2C73"><title>S4 Notes tables, Thinking: 83.2% (104 of 125)</title></circle><circle cx="646.0" cy="135.0" r="11.5" fill="transparent"><title>S4 Notes tables, Thinking: 83.2% (104 of 125)</title></circle></g><text x="218.0" y="165.0" font-size="12.5" text-anchor="end" fill="#12161C" font-weight="500" class="" >S5 · Segments</text><g class="mark"><circle cx="494.0" cy="161.0" r="6.5" fill="#FAFAF7"/><circle cx="494.0" cy="161.0" r="4.5" fill="#8F9BDD"><title>S5 Segments, Plain: 52.8% (66 of 125)</title></circle><circle cx="494.0" cy="161.0" r="11.5" fill="transparent"><title>S5 Segments, Plain: 52.8% (66 of 125)</title></circle></g><g class="mark"><circle cx="506.0" cy="161.0" r="6.5" fill="#FAFAF7"/><circle cx="506.0" cy="161.0" r="4.5" fill="#5466C4"><title>S5 Segments, Check + retry: 55.2% (69 of 125)</title></circle><circle cx="506.0" cy="161.0" r="11.5" fill="transparent"><title>S5 Segments, Check + retry: 55.2% (69 of 125)</title></circle></g><g class="mark"><circle cx="574.0" cy="161.0" r="6.5" fill="#FAFAF7"/><circle cx="574.0" cy="161.0" r="4.5" fill="#1F2C73"><title>S5 Segments, Thinking: 68.8% (86 of 125)</title></circle><circle cx="574.0" cy="161.0" r="11.5" fill="transparent"><title>S5 Segments, Thinking: 68.8% (86 of 125)</title></circle></g><text x="218.0" y="191.0" font-size="12.5" text-anchor="end" fill="#12161C" font-weight="500" class="" >S6 · Numbers in prose</text><g class="mark"><circle cx="594.0" cy="187.0" r="6.5" fill="#FAFAF7"/><circle cx="594.0" cy="187.0" r="4.5" fill="#8F9BDD"><title>S6 Numbers in prose, Plain: 72.8% (91 of 125)</title></circle><circle cx="594.0" cy="187.0" r="11.5" fill="transparent"><title>S6 Numbers in prose, Plain: 72.8% (91 of 125)</title></circle></g><g class="mark"><circle cx="634.0" cy="187.0" r="6.5" fill="#FAFAF7"/><circle cx="634.0" cy="187.0" r="4.5" fill="#5466C4"><title>S6 Numbers in prose, Check + retry: 80.8% (101 of 125)</title></circle><circle cx="634.0" cy="187.0" r="11.5" fill="transparent"><title>S6 Numbers in prose, Check + retry: 80.8% (101 of 125)</title></circle></g><g class="mark"><circle cx="582.0" cy="187.0" r="6.5" fill="#FAFAF7"/><circle cx="582.0" cy="187.0" r="4.5" fill="#1F2C73"><title>S6 Numbers in prose, Thinking: 70.4% (88 of 125)</title></circle><circle cx="582.0" cy="187.0" r="11.5" fill="transparent"><title>S6 Numbers in prose, Thinking: 70.4% (88 of 125)</title></circle></g><text x="218.0" y="217.0" font-size="12.5" text-anchor="end" fill="#12161C" font-weight="500" class="" >S7 · Units and per-share</text><g class="mark"><circle cx="550.0" cy="213.0" r="6.5" fill="#FAFAF7"/><circle cx="550.0" cy="213.0" r="4.5" fill="#8F9BDD"><title>S7 Units and per-share, Plain: 64.0% (80 of 125)</title></circle><circle cx="550.0" cy="213.0" r="11.5" fill="transparent"><title>S7 Units and per-share, Plain: 64.0% (80 of 125)</title></circle></g><g class="mark"><circle cx="554.0" cy="213.0" r="6.5" fill="#FAFAF7"/><circle cx="554.0" cy="213.0" r="4.5" fill="#5466C4"><title>S7 Units and per-share, Check + retry: 64.8% (81 of 125)</title></circle><circle cx="554.0" cy="213.0" r="11.5" fill="transparent"><title>S7 Units and per-share, Check + retry: 64.8% (81 of 125)</title></circle></g><g class="mark"><circle cx="574.0" cy="213.0" r="6.5" fill="#FAFAF7"/><circle cx="574.0" cy="213.0" r="4.5" fill="#1F2C73"><title>S7 Units and per-share, Thinking: 68.8% (86 of 125)</title></circle><circle cx="574.0" cy="213.0" r="11.5" fill="transparent"><title>S7 Units and per-share, Thinking: 68.8% (86 of 125)</title></circle></g><text x="218.0" y="243.0" font-size="12.5" text-anchor="end" fill="#12161C" font-weight="500" class="" >S8 · Not in the provided pages</text><g class="mark"><circle cx="678.0" cy="239.0" r="6.5" fill="#FAFAF7"/><circle cx="678.0" cy="239.0" r="4.5" fill="#8F9BDD"><title>S8 Not in the provided pages, Plain: 89.6% (112 of 125)</title></circle><circle cx="678.0" cy="239.0" r="11.5" fill="transparent"><title>S8 Not in the provided pages, Plain: 89.6% (112 of 125)</title></circle></g><g class="mark"><circle cx="678.0" cy="239.0" r="6.5" fill="#FAFAF7"/><circle cx="678.0" cy="239.0" r="4.5" fill="#5466C4"><title>S8 Not in the provided pages, Check + retry: 89.6% (112 of 125)</title></circle><circle cx="678.0" cy="239.0" r="11.5" fill="transparent"><title>S8 Not in the provided pages, Check + retry: 89.6% (112 of 125)</title></circle></g><g class="mark"><circle cx="654.0" cy="239.0" r="6.5" fill="#FAFAF7"/><circle cx="654.0" cy="239.0" r="4.5" fill="#1F2C73"><title>S8 Not in the provided pages, Thinking: 84.8% (106 of 125)</title></circle><circle cx="654.0" cy="239.0" r="11.5" fill="transparent"><title>S8 Not in the provided pages, Thinking: 84.8% (106 of 125)</title></circle></g><rect x="230.0" y="11.0" width="10" height="10" rx="2" fill="#8F9BDD"/><text x="245.0" y="20.0" font-size="12" text-anchor="start" fill="#3D4452" font-weight="400" class="" >Plain</text><rect x="300.0" y="11.0" width="10" height="10" rx="2" fill="#5466C4"/><text x="315.0" y="20.0" font-size="12" text-anchor="start" fill="#3D4452" font-weight="400" class="" >Check + retry</text><rect x="422.8" y="11.0" width="10" height="10" rx="2" fill="#1F2C73"/><text x="437.8" y="20.0" font-size="12" text-anchor="start" fill="#3D4452" font-weight="400" class="" >Thinking</text></svg></div>
+  <figcaption><b>Figure 2.</b> Accuracy per slice and setup (S8: correct "not found").</figcaption>
+</figure>
+<p>Plain setup: strongest on main statements, current period (96.8%) and main statements, prior period
+(83.2%); weakest on segments (52.8%) and
+units and per-share (64.0%).</p>
+
+<h2 id="setups">Retry and thinking</h2>
+<div class="tablewrap"><table>
+  <thead><tr><th>Comparison</th><th class="n">Accuracy change</th><th class="n">Holm p</th><th class="n">Confident-wrong change</th><th class="n">Holm p</th></tr></thead>
+  <tbody>
+  <tr><td>Check + retry vs plain</td><td class="n">+3.0 pts</td><td class="n sig">4.77e-07</td><td class="n">+6</td><td class="n ns">0.156</td></tr>
+  <tr><td>Thinking vs plain</td><td class="n">+6.3 pts</td><td class="n sig">0.000462</td><td class="n">-56</td><td class="n sig">1.32e-07</td></tr>
+  <tr><td>Thinking vs check + retry</td><td class="n">+3.3 pts</td><td class="n ns">0.105</td><td class="n">-62</td><td class="n sig">2.09e-09</td></tr>
+  </tbody>
+</table></div>
+<p class="muted">Paired exact McNemar tests on the same questions; Holm-corrected over every within-model comparison in the study. Blue: significant at α = 0.05.</p>
+<p>Check + retry asked 99 answers again. Of those,
+26 became correct,
+6 became confident-wrong,
+3 turned into "not found", and the
+rest still failed a check.</p>
+
+<h2 id="notes">What stands out</h2>
+<ul>
+  <li>It has no non-reasoning mode, so its plain and check + retry setups use the lowest reasoning effort ("low") and its thinking setup the highest ("high"). Its plain-setup numbers are not directly comparable with models answering without reasoning.</li>
+  <li>High effort halves its confident-wrong answers (112 → 56) but hit the 8,192-token limit on 97 questions.</li>
+  <li>The largest model in the study (20.9B, mixture of experts), run in its native MXFP4 weights.</li>
+</ul>
+
+<h2 id="examples">Real answers</h2>
+<p>Chosen by a fixed rule (evenly spaced over question ids) from its best setup (thinking), not
+picked by hand.</p>
+<h3>Correct</h3><div class="ex">
+  <p class="meta">Abbott Laboratories · 10-Q · S1 Main statements, current period · FE-0004 <span class="tag good" style="margin-left:6px">Correct</span></p>
+  <p class="q">“What was Abbott Laboratories&#39;s cumulative gains (losses) on derivative instruments designated as cash flow hedges as of September 30, 2026?”</p>
+  <dl>
+    <dt>Answer</dt><dd><span class="line">61</span> in millions, page 3</dd>
+    <dt>Its quote</dt><dd><span class="line">Cumulative gains (losses) on derivative instruments designated as cash flow hedges 61 (69)</span></dd>
+    <dt>Answer key</dt><dd><span class="line">61</span> million · from <span class="line">Cumulative gains (losses) on derivative instruments designated as cash flow hedges 61 (69)</span></dd>
+  </dl>
+</div>
+<div class="ex">
+  <p class="meta">Allstate Corporation · 10-Q · S4 Notes tables · FE-0387 <span class="tag good" style="margin-left:6px">Correct</span></p>
+  <p class="q">“What was Allstate Corporation&#39;s investment income, before expense for the nine months ended September 30, 2025?”</p>
+  <dl>
+    <dt>Answer</dt><dd><span class="line">2768</span> in millions, page 14</dd>
+    <dt>Its quote</dt><dd><span class="line">Investment income, before expense 1,255 1,020 3,357 2,768</span></dd>
+    <dt>Answer key</dt><dd><span class="line">2,768</span> million · from <span class="line">Investment income, before expense 1,255 1,020 3,357 2,768</span></dd>
+  </dl>
+</div>
+<h3>Confident-wrong: passed every check, still wrong</h3><div class="ex">
+  <p class="meta">Adobe Inc. · 10-Q · S3 10-Q quarter vs year-to-date · FE-0260 <span class="tag bad" style="margin-left:6px">Confident-wrong</span></p>
+  <p class="q">“What was Adobe Inc.&#39;s unrealized gains / losses on derivative instruments for the nine months ended August 28, 2026?”</p>
+  <dl>
+    <dt>Answer</dt><dd><span class="line">39</span> in millions, page 4</dd>
+    <dt>Its quote</dt><dd><span class="line">Unrealized gains / losses on derivative instruments 39 (44) (3) (231)</span></dd>
+    <dt>Answer key</dt><dd><span class="line">3</span> million · from <span class="line">Unrealized gains / losses on derivative instruments 39 (44) (3) (231)</span></dd>
+<dt>Error type</dt><dd>Wrong period or column</dd>  </dl>
+</div>
+<div class="ex">
+  <p class="meta">Charles Schwab Corporation · 10-Q · S5 Segments · FE-0604 <span class="tag bad" style="margin-left:6px">Confident-wrong</span></p>
+  <p class="q">“What was Charles Schwab Corporation&#39;s professional services for its Advisor Services segment for the three months ended September 30, 2025?”</p>
+  <dl>
+    <dt>Answer</dt><dd><span class="line">235</span> in millions, page 69</dd>
+    <dt>Its quote</dt><dd><span class="line">Professional services 264 235</span></dd>
+    <dt>Answer key</dt><dd><span class="line">58</span> million · from <span class="line">Professional services 264 235 61 58 325 293</span></dd>
+<dt>Error type</dt><dd>Wrong period or column</dd>  </dl>
+</div>
+<div class="ex">
+  <p class="meta">NVIDIA Corporation · 10-K · S7 Units and per-share · FE-0822 <span class="tag bad" style="margin-left:6px">Confident-wrong</span></p>
+  <p class="q">“What was NVIDIA Corporation&#39;s basic weighted average shares (number) for the fiscal year ended January 26, 2025?”</p>
+  <dl>
+    <dt>Answer</dt><dd><span class="line">24555</span> none, page 62</dd>
+    <dt>Its quote</dt><dd><span class="line">Basic weighted average shares 24,359 24,555 24,690</span></dd>
+    <dt>Answer key</dt><dd><span class="line">24,555</span> million · from <span class="line">Basic weighted average shares 24,359 24,555 24,690</span></dd>
+<dt>Error type</dt><dd>Scale or unit</dd>  </dl>
+</div>
+<h3>Right value, unusable evidence</h3><div class="ex">
+  <p class="meta">McDonald&#39;s Corporation · 10-Q · S3 10-Q quarter vs year-to-date · FE-0313 <span class="tag mid" style="margin-left:6px">Right value, unusable evidence</span></p>
+  <p class="q">“What was McDonald&#39;s Corporation&#39;s cash and equivalents increase (decrease) for the nine months ended September 30, 2026?”</p>
+  <dl>
+    <dt>Answer</dt><dd><span class="line">419</span> in millions, page 5</dd>
+    <dt>Its quote</dt><dd><span class="line">Cash and equivalents increase (decrease) 419 1,328</span></dd>
+    <dt>Answer key</dt><dd><span class="line">419</span> million · from <span class="line">Cash and equivalents increase (decrease) 371 537 419 1,328</span></dd>
+<dt>Checker</dt><dd>failed the span check</dd><dt>Error type</dt><dd>Quote not verbatim</dd>  </dl>
+</div>
+<h3>Wrong, caught by the checker</h3><div class="ex">
+  <p class="meta">Lockheed Martin Corporation · 10-K · S5 Segments · FE-0561 <span class="tag mid" style="margin-left:6px">Caught wrong</span></p>
+  <p class="q">“What was Lockheed Martin Corporation&#39;s goodwill for its Space Systems segment as of December 31, 2024?”</p>
+  <dl>
+    <dt>Answer</dt><dd><span class="line">6712</span> in millions, page 73</dd>
+    <dt>Its quote</dt><dd><span class="line">Balance at December 31, 2024 196 2,085 6,712 2,074 11,067</span></dd>
+    <dt>Answer key</dt><dd><span class="line">2,074</span> million · from <span class="line">Balance at December 31, 2024 196 2,085 6,712 2,074 11,067</span></dd>
+<dt>Checker</dt><dd>failed the span check</dd><dt>Error type</dt><dd>Wrong period or column</dd>  </dl>
+</div>
+
+<h2 id="run">How it was run</h2>
+<div class="facts">
+  <div><span>Hugging Face repository</span><b><a href="https://huggingface.co/openai/gpt-oss-20b">openai/gpt-oss-20b</a></b></div>
+  <div><span>Pinned revision</span><b class="mono">6cee5e81ee83</b><b style="display:block;font-size:12px;color:#5B6472;font-weight:400">reconstructed from the local cache: the server was started without the pin (PROTOCOL §12)</b></div>
+  <div><span>Licence</span><b>Apache 2.0</b></div>
+  <div><span>Released (repository created)</span><b>2025-08-04</b></div>
+  <div><span>Precision</span><b>mxfp4</b></div>
+  <div><span>Thinking switch</span><b class="mono">{&#39;reasoning_effort&#39;: &#39;high&#39;}</b></div>
+</div>
+<pre><code>vllm serve openai/gpt-oss-20b --served-model-name gpt-oss-20b --host 127.0.0.1 --port 8000 --max-model-len 16384 --gpu-memory-utilization 0.9 --api-key &lt;key&gt; --seed 0</code></pre>
+<pre><code>uv run python hf_data.py pull
+bash run_all.sh gpt-oss-20b                              # serve, then C1, C2, C3
+uv run python runner.py gpt-oss-20b C1 --regrade          # re-grade the stored replies</code></pre>
+<a class="backlink" href="/research/filing-evidence#models">← All models</a>
+</article>
+</div>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="in">
+    <span>© 2026 Pramana Research · Text, data and figures: <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a> · Code: <a href="https://polyformproject.org/licenses/noncommercial/1.0.0/">PolyForm Noncommercial 1.0.0</a></span>
+    <span>Model outputs are not investment advice. Check every figure against its source.</span>
+  </div>
+</footer>
+</body>
+</html>
