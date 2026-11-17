@@ -47,6 +47,5 @@ Use the exact values Vercel displays for your project; they can differ from the 
 
 ## Before sharing the link
 
-- Create the mailbox `hello@pramana-research.com`: both "Request early access" buttons
-  and the contact button send email there.
+- Create the mailbox `hello@pramana-research.com`: the contact button sends email there.
 - Editing copy: change the text directly in `index.html` and push (or run `vercel --prod`).
