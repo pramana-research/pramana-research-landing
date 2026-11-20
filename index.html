@@ -40,7 +40,6 @@ html{scroll-behavior:smooth}
 <span style="font-family: 'Space Grotesk', Inter, sans-serif; font-weight: 700; font-size: 19px; letter-spacing: -0.01em">Pramana Research</span>
 </a>
 <nav aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; gap: 28px; font-size: 15px; font-weight: 500">
-<a href="#products" style="color: #3D4452; text-decoration: none">Products</a>
 <a href="/research" style="color: #3D4452; text-decoration: none">Research</a>
 </nav>
 </div>
@@ -52,11 +51,10 @@ html{scroll-behavior:smooth}
 </div>
 </section>
 
-<section id="products" style="position: relative; z-index: 1">
+<section id="research" style="position: relative; z-index: 1">
 <div style="max-width: 1160px; margin: 0 auto; padding: 96px 24px">
-<p style="margin: 0 0 12px; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: #2E3F9E">Products</p>
-<h2 style="margin: 0; max-width: 760px; font-family: 'Space Grotesk', Inter, sans-serif; font-weight: 700; font-size: clamp(32px, 4vw, 46px); line-height: 1.08; letter-spacing: -0.02em">Specialist models, built one domain at a time.</h2>
-<div style="margin-top: 56px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px">
+<p style="margin: 0 0 12px; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: #2E3F9E">Research</p>
+<div style="margin-top: 20px; display: grid; grid-template-columns: minmax(0, 620px); gap: 20px">
 
 <a href="/research/filing-evidence" style="display: flex; flex-direction: column; gap: 14px; padding: 32px; border: 1px solid #2E3F9E; border-radius: 14px; background: rgba(255, 255, 255, 0.6); text-decoration: none; color: #12161C">
 <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
@@ -68,15 +66,6 @@ html{scroll-behavior:smooth}
 <span style="margin-top: auto; padding-top: 8px; font-size: 15px; font-weight: 600; color: #2E3F9E">Read the report →</span>
 </a>
 
-<a href="mailto:hello@pramana-research.com?subject=Private%20models" style="display: flex; flex-direction: column; gap: 14px; padding: 32px; border: 1px solid #E3E5E0; border-radius: 14px; background: rgba(255, 255, 255, 0.6); text-decoration: none; color: #12161C">
-<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
-<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #5B6472">For teams</span>
-<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #3D4452; background: #EEF0EC; padding: 4px 10px; border-radius: 999px">By engagement</span>
-</div>
-<h3 style="margin: 0; font-family: 'Space Grotesk', Inter, sans-serif; font-weight: 700; font-size: 28px; letter-spacing: -0.01em">Private models</h3>
-<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #3D4452">A model fine-tuned on your own documents, evaluated against your own questions, and deployed on your own infrastructure.</p>
-<span style="margin-top: auto; padding-top: 8px; font-size: 15px; font-weight: 600; color: #2E3F9E">Talk to us →</span>
-</a>
 </div>
 </div>
 </section>
@@ -242,7 +231,7 @@ class Component extends DCLogic {
       ['top', 0.0, 'doc', 1.0, [[CELL[0], CELL[1], 0.75]]],
       ['top', 0.6, 'doc', 1.0, [[CELL[0], CELL[1], 0.75]]],
       ['top', 1.05, 'trace', 1.05, [[miniCell[0], miniCell[1], 0.9], [ANS[0], ANS[1], 1]]],
-      ['products', 0.5, 'crystal', 1.0, []]
+      ['research', 0.5, 'crystal', 1.0, []]
     ] : [['top', 0, 'scatter', 1, []]];
     const doc = c.ownerDocument;
     let w = 0, h = 0, narrow = false, unit = 1;
