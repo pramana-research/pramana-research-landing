@@ -47,7 +47,7 @@
   <p class="eyebrow"><a href="/research/filing-evidence" style="text-decoration:none">Filing-Evidence</a> · Results per model</p>
   <h1>Llama-3.1-8B</h1>
   <p class="subtitle">Meta · 8.0B parameters · bf16</p>
-  <div class="byline"><span><strong>Krishna Nandula</strong> · Pramana Research</span><span>17 November 2026</span><span>Filing-Evidence v1.0</span></div>
+  <div class="byline"><span><strong>Krishna Nandula</strong> · Pramana Research</span><span>17 November 2026</span><span>Filing-Evidence v1.1</span></div>
   <p class="status"><b>Status:</b> part of an independent community research report, published by Pramana Research on 17 November 2026. It has <b>not been peer-reviewed</b> and has not been submitted to or accepted by any conference or journal. Corrections and feedback are welcome on <a href="https://github.com/pramana-research/filing-evidence/issues">GitHub</a>.</p>
   <div class="actions">
     <a class="btn primary" href="/research/filing-evidence/pdf/llama-3-1-8b.pdf" download>Download PDF</a>
@@ -178,12 +178,12 @@ Total Current Liabilities 16,152 16,496</span></dd>
   </dl>
 </div>
 <div class="ex">
-  <p class="meta">Thermo Fisher Scientific Inc. · 10-Q · S3 10-Q quarter vs year-to-date · FE-0350 <span class="tag good" style="margin-left:6px">Correct</span></p>
-  <p class="q">“What was Thermo Fisher Scientific Inc.&#39;s total costs and operating expenses for the nine months ended September 26, 2026?”</p>
+  <p class="meta">Simon Property Group, Inc. · 10-Q · S3 10-Q quarter vs year-to-date · FE-0349 <span class="tag good" style="margin-left:6px">Correct</span></p>
+  <p class="q">“What was Simon Property Group, Inc.&#39;s consolidated net income for the three months ended September 30, 2026?”</p>
   <dl>
-    <dt>Answer</dt><dd><span class="line">28923</span> in millions, page 3</dd>
-    <dt>Its quote</dt><dd><span class="line">Total costs and operating expenses 9,874 9,182 28,923 26,850</span></dd>
-    <dt>Answer key</dt><dd><span class="line">28,923</span> million · from <span class="line">Total costs and operating expenses 9,874 9,182 28,923 26,850</span></dd>
+    <dt>Answer</dt><dd><span class="line">565294</span> in thousands, page 5</dd>
+    <dt>Its quote</dt><dd><span class="line">CONSOLIDATED NET INCOME 565,294 702,696 1,707,959 1,824,237</span></dd>
+    <dt>Answer key</dt><dd><span class="line">565,294</span> thousand · from <span class="line">CONSOLIDATED NET INCOME 565,294 702,696 1,707,959 1,824,237</span></dd>
   </dl>
 </div>
 <h3>Confident-wrong: passed every check, still wrong</h3><div class="ex">
@@ -196,22 +196,22 @@ Total Current Liabilities 16,152 16,496</span></dd>
 <dt>Error type</dt><dd>Scale or unit</dd>  </dl>
 </div>
 <div class="ex">
-  <p class="meta">Eli Lilly and Company · 10-K · S4 Notes tables · FE-0431 <span class="tag bad" style="margin-left:6px">Confident-wrong</span></p>
-  <p class="q">“What was Eli Lilly and Company&#39;s cash payments for interest on borrowings for the fiscal year ended December 31, 2025?”</p>
+  <p class="meta">Medtronic plc · 10-Q · S4 Notes tables · FE-0440 <span class="tag bad" style="margin-left:6px">Confident-wrong</span></p>
+  <p class="q">“What was Medtronic plc&#39;s income before income taxes for the three months ended July 25, 2025?”</p>
   <dl>
-    <dt>Answer</dt><dd><span class="line">633</span> none, page 76</dd>
-    <dt>Its quote</dt><dd><span class="line">Cash payments for interest on borrowings 633 578 404</span></dd>
-    <dt>Answer key</dt><dd><span class="line">633</span> million · from <span class="line">Cash payments for interest on borrowings 633 578 404</span></dd>
+    <dt>Answer</dt><dd><span class="line">1302</span> none, page 34</dd>
+    <dt>Its quote</dt><dd><span class="line">Income before income taxes $ 1,302</span></dd>
+    <dt>Answer key</dt><dd><span class="line">1,302</span> million · from <span class="line">Income before income taxes $ 1,302</span></dd>
 <dt>Error type</dt><dd>Scale or unit</dd>  </dl>
 </div>
 <div class="ex">
-  <p class="meta">Thermo Fisher Scientific Inc. · 10-K · S6 Numbers in prose · FE-0728 <span class="tag bad" style="margin-left:6px">Confident-wrong</span></p>
-  <p class="q">“What was Thermo Fisher Scientific Inc.&#39;s environmental liability as of December 31, 2025?”</p>
+  <p class="meta">Wells Fargo &amp; Company · 10-Q · S6 Numbers in prose · FE-0748 <span class="tag bad" style="margin-left:6px">Confident-wrong</span></p>
+  <p class="q">“What was Wells Fargo &amp; Company&#39;s net derivative gains (losses) from economic hedges related to mortgage loans held for sale and derivative loan commitments for the three months ended September 30, 2026?”</p>
   <dl>
-    <dt>Answer</dt><dd><span class="line">86</span> none, page 51</dd>
-    <dt>Its quote</dt><dd><span class="line">At December 31, 2025, the company’s total environmental liability was approximately $86 million.</span></dd>
-    <dt>Answer key</dt><dd><span class="line">86</span> million · from <span class="line">The company is currently involved in various stages of investigation and remediation related to environmental matters. The company cannot predict all potential costs related to environmental remediation matters and the possible impact on future operations given the uncertainties regarding the extent of the required cleanup, the complexity and interpretation of applicable laws and regulations, the varying costs of alternative cleanup methods and the extent of the company’s responsibility. Expenses for environmental remediation matters related to the costs of installing, operating and maintaining groundwater-treatment systems and other remedial activities related to historical environmental contamination at the company’s domestic and international facilities were not material in any period presented. At December 31, 2025, the company’s total environmental liability was approximately $86 million. While management believes the accruals for environmental remediation are adequate based on current estimates of remediation costs, the company may be subject to additional remedial or compliance costs due to future events such as changes in existing laws and regulations, changes in agency direction or enforcement policies, developments in remediation technologies or changes in the conduct of the company’s operations, which could have a material adverse effect on the company’s financial position, results of operations and cash flows.</span></dd>
-<dt>Error type</dt><dd>Scale or unit</dd>  </dl>
+    <dt>Answer</dt><dd><span class="line">-390</span> in millions, page 83</dd>
+    <dt>Its quote</dt><dd><span class="line">Net derivative gains (losses) from economic hedges (4) (390) 2 (471) 128</span></dd>
+    <dt>Answer key</dt><dd><span class="line">87</span> million · from <span class="line">(6)Includes net gains (losses) of $87 million and $116 million in the third quarter and first nine months of 2026, respectively, and $(6) million and $(20) million in the third quarter and first nine months of 2025, respectively, related to derivatives used as economic hedges of mortgage loans held for sale and derivative loan commitments.</span></dd>
+<dt>Error type</dt><dd>Wrong item</dd>  </dl>
 </div>
 <h3>Right value, unusable evidence</h3><div class="ex">
   <p class="meta">Progressive Corporation · 10-Q · S1 Main statements, current period · FE-0088 <span class="tag mid" style="margin-left:6px">Right value, unusable evidence</span></p>

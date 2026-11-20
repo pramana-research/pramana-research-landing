@@ -47,7 +47,7 @@
   <p class="eyebrow"><a href="/research/filing-evidence" style="text-decoration:none">Filing-Evidence</a> · Results per model</p>
   <h1>Gemma-3-12B</h1>
   <p class="subtitle">Google · 12.2B parameters · fp8</p>
-  <div class="byline"><span><strong>Krishna Nandula</strong> · Pramana Research</span><span>17 November 2026</span><span>Filing-Evidence v1.0</span></div>
+  <div class="byline"><span><strong>Krishna Nandula</strong> · Pramana Research</span><span>17 November 2026</span><span>Filing-Evidence v1.1</span></div>
   <p class="status"><b>Status:</b> part of an independent community research report, published by Pramana Research on 17 November 2026. It has <b>not been peer-reviewed</b> and has not been submitted to or accepted by any conference or journal. Corrections and feedback are welcome on <a href="https://github.com/pramana-research/filing-evidence/issues">GitHub</a>.</p>
   <div class="actions">
     <a class="btn primary" href="/research/filing-evidence/pdf/gemma-3-12b.pdf" download>Download PDF</a>
@@ -192,22 +192,22 @@ CONSOLIDATED NET INCOME 565,294</span></dd>
 <dt>Error type</dt><dd>Scale or unit</dd>  </dl>
 </div>
 <div class="ex">
-  <p class="meta">Caterpillar Inc. · 10-Q · S4 Notes tables · FE-0395 <span class="tag bad" style="margin-left:6px">Confident-wrong</span></p>
-  <p class="q">“What was Caterpillar Inc.&#39;s inventory/cost of sales for the three months ended September 30, 2026?”</p>
+  <p class="meta">U.S. Bancorp · 10-Q · S3 10-Q quarter vs year-to-date · FE-0364 <span class="tag bad" style="margin-left:6px">Confident-wrong</span></p>
+  <p class="q">“What was U.S. Bancorp&#39;s net interest income after provision for credit losses for the three months ended September 30, 2026?”</p>
   <dl>
-    <dt>Answer</dt><dd><span class="line">14992</span> Millions of dollars, page 34</dd>
-    <dt>Its quote</dt><dd><span class="line">Cost of goods sold 5,883 5,639 3,470 — 14,992</span></dd>
-    <dt>Answer key</dt><dd><span class="line">65</span> million · from <span class="line">Inventory/cost of sales 65 56 97 8</span></dd>
-<dt>Error type</dt><dd>Wrong item</dd>  </dl>
+    <dt>Answer</dt><dd><span class="line">11324</span> in millions, page 31</dd>
+    <dt>Its quote</dt><dd><span class="line">Net interest income after provision for credit losses 3,814 3,651 11,324 10,756</span></dd>
+    <dt>Answer key</dt><dd><span class="line">3,814</span> million · from <span class="line">Net interest income after provision for credit losses 3,814 3,651 11,324 10,756</span></dd>
+<dt>Error type</dt><dd>Wrong period or column</dd>  </dl>
 </div>
 <div class="ex">
-  <p class="meta">PepsiCo, Inc. · 10-K · S6 Numbers in prose · FE-0705 <span class="tag bad" style="margin-left:6px">Confident-wrong</span></p>
-  <p class="q">“What was PepsiCo, Inc.&#39;s Cash Collateral for Borrowed Securities as of December 28, 2024?”</p>
+  <p class="meta">Pfizer Inc. · 10-Q · S6 Numbers in prose · FE-0707 <span class="tag bad" style="margin-left:6px">Confident-wrong</span></p>
+  <p class="q">“What was Pfizer Inc.&#39;s long-term equity securities held in trust as of December 31, 2025?”</p>
   <dl>
-    <dt>Answer</dt><dd><span class="line">447</span> none, page 90</dd>
-    <dt>Its quote</dt><dd><span class="line">Includes $430 million and $447 million of cash collateral for 2025 and 2024, respectively, under the securities lending program offset by corresponding securities lending payable of the same amount. The net impact on the fair value of U.S. plan assets is zero.</span></dd>
-    <dt>Answer key</dt><dd><span class="line">447</span> million · from <span class="line">(g)Includes $430 million and $447 million of cash collateral for 2025 and 2024, respectively, under the securities lending program offset by corresponding securities lending payable of the same amount. The net impact on the fair value of U.S. plan assets is zero.</span></dd>
-<dt>Error type</dt><dd>Scale or unit</dd>  </dl>
+    <dt>Answer</dt><dd><span class="line">642</span> in millions, page 16</dd>
+    <dt>Its quote</dt><dd><span class="line">Equity securities with readily determinable fair values(a) $ 484 $ 642</span></dd>
+    <dt>Answer key</dt><dd><span class="line">146</span> million · from <span class="line">(b)Long-term equity securities of $122 million as of September 27, 2026 and $146 million as of December 31, 2025 were held in restricted trusts for U.S. non-qualified employee benefit plans.</span></dd>
+<dt>Error type</dt><dd>Wrong item</dd>  </dl>
 </div>
 <h3>Right value, unusable evidence</h3><div class="ex">
   <p class="meta">Coca-Cola Company · 10-K · S2 Main statements, prior period · FE-0174 <span class="tag mid" style="margin-left:6px">Right value, unusable evidence</span></p>

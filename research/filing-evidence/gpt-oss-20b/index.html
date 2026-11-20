@@ -47,7 +47,7 @@
   <p class="eyebrow"><a href="/research/filing-evidence" style="text-decoration:none">Filing-Evidence</a> · Results per model</p>
   <h1>gpt-oss-20b</h1>
   <p class="subtitle">OpenAI · 20.9B parameters · mxfp4 · has a thinking mode</p>
-  <div class="byline"><span><strong>Krishna Nandula</strong> · Pramana Research</span><span>17 November 2026</span><span>Filing-Evidence v1.0</span></div>
+  <div class="byline"><span><strong>Krishna Nandula</strong> · Pramana Research</span><span>17 November 2026</span><span>Filing-Evidence v1.1</span></div>
   <p class="status"><b>Status:</b> part of an independent community research report, published by Pramana Research on 17 November 2026. It has <b>not been peer-reviewed</b> and has not been submitted to or accepted by any conference or journal. Corrections and feedback are welcome on <a href="https://github.com/pramana-research/filing-evidence/issues">GitHub</a>.</p>
   <div class="actions">
     <a class="btn primary" href="/research/filing-evidence/pdf/gpt-oss-20b.pdf" download>Download PDF</a>
@@ -180,12 +180,12 @@ picked by hand.</p>
   </dl>
 </div>
 <div class="ex">
-  <p class="meta">Allstate Corporation · 10-Q · S4 Notes tables · FE-0387 <span class="tag good" style="margin-left:6px">Correct</span></p>
-  <p class="q">“What was Allstate Corporation&#39;s investment income, before expense for the nine months ended September 30, 2025?”</p>
+  <p class="meta">Allstate Corporation · 10-K · S4 Notes tables · FE-0385 <span class="tag good" style="margin-left:6px">Correct</span></p>
+  <p class="q">“What was Allstate Corporation&#39;s net income (loss) for the fiscal year ended December 31, 2025?”</p>
   <dl>
-    <dt>Answer</dt><dd><span class="line">2768</span> in millions, page 14</dd>
-    <dt>Its quote</dt><dd><span class="line">Investment income, before expense 1,255 1,020 3,357 2,768</span></dd>
-    <dt>Answer key</dt><dd><span class="line">2,768</span> million · from <span class="line">Investment income, before expense 1,255 1,020 3,357 2,768</span></dd>
+    <dt>Answer</dt><dd><span class="line">10266</span> in millions, page 102</dd>
+    <dt>Its quote</dt><dd><span class="line">Net income (loss) $ 10,266 $ 4,599 $ (213)</span></dd>
+    <dt>Answer key</dt><dd><span class="line">10,266</span> million · from <span class="line">Net income (loss) $ 10,266 $ 4,599 $ (213)</span></dd>
   </dl>
 </div>
 <h3>Confident-wrong: passed every check, still wrong</h3><div class="ex">
@@ -198,12 +198,12 @@ picked by hand.</p>
 <dt>Error type</dt><dd>Wrong period or column</dd>  </dl>
 </div>
 <div class="ex">
-  <p class="meta">Charles Schwab Corporation · 10-Q · S5 Segments · FE-0604 <span class="tag bad" style="margin-left:6px">Confident-wrong</span></p>
-  <p class="q">“What was Charles Schwab Corporation&#39;s professional services for its Advisor Services segment for the three months ended September 30, 2025?”</p>
+  <p class="meta">UnitedHealth Group Incorporated · 10-Q · S5 Segments · FE-0614 <span class="tag bad" style="margin-left:6px">Confident-wrong</span></p>
+  <p class="q">“What was UnitedHealth Group Incorporated&#39;s Depreciation and Amortization for its optum segment for the three months ended September 30, 2026?”</p>
   <dl>
-    <dt>Answer</dt><dd><span class="line">235</span> in millions, page 69</dd>
-    <dt>Its quote</dt><dd><span class="line">Professional services 264 235</span></dd>
-    <dt>Answer key</dt><dd><span class="line">58</span> million · from <span class="line">Professional services 264 235 61 58 325 293</span></dd>
+    <dt>Answer</dt><dd><span class="line">195</span> in millions, page 16</dd>
+    <dt>Its quote</dt><dd><span class="line">Depreciation and Amortization 195 253 439 186 — 878 — 1,073</span></dd>
+    <dt>Answer key</dt><dd><span class="line">878</span> million · from <span class="line">Depreciation and Amortization 195 253 439 186 — 878 — 1,073</span></dd>
 <dt>Error type</dt><dd>Wrong period or column</dd>  </dl>
 </div>
 <div class="ex">

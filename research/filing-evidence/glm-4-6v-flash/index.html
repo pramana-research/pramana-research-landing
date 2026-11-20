@@ -47,7 +47,7 @@
   <p class="eyebrow"><a href="/research/filing-evidence" style="text-decoration:none">Filing-Evidence</a> · Results per model</p>
   <h1>GLM-4.6V-Flash</h1>
   <p class="subtitle">Zhipu (Z.ai) · 10.3B parameters · bf16 · has a thinking mode</p>
-  <div class="byline"><span><strong>Krishna Nandula</strong> · Pramana Research</span><span>17 November 2026</span><span>Filing-Evidence v1.0</span></div>
+  <div class="byline"><span><strong>Krishna Nandula</strong> · Pramana Research</span><span>17 November 2026</span><span>Filing-Evidence v1.1</span></div>
   <p class="status"><b>Status:</b> part of an independent community research report, published by Pramana Research on 17 November 2026. It has <b>not been peer-reviewed</b> and has not been submitted to or accepted by any conference or journal. Corrections and feedback are welcome on <a href="https://github.com/pramana-research/filing-evidence/issues">GitHub</a>.</p>
   <div class="actions">
     <a class="btn primary" href="/research/filing-evidence/pdf/glm-4-6v-flash.pdf" download>Download PDF</a>
@@ -180,12 +180,12 @@ picked by hand.</p>
   </dl>
 </div>
 <div class="ex">
-  <p class="meta">Comcast Corporation · 10-Q · S4 Notes tables · FE-0398 <span class="tag good" style="margin-left:6px">Correct</span></p>
-  <p class="q">“What was Comcast Corporation&#39;s total programming and production costs for the three months ended September 30, 2025?”</p>
+  <p class="meta">Caterpillar Inc. · 10-Q · S4 Notes tables · FE-0396 <span class="tag good" style="margin-left:6px">Correct</span></p>
+  <p class="q">“What was Caterpillar Inc.&#39;s stock-based compensation expense for the three months ended September 30, 2025?”</p>
   <dl>
-    <dt>Answer</dt><dd><span class="line">8655</span> in millions, page 15</dd>
-    <dt>Its quote</dt><dd><span class="line">Total programming and production costs $ 7,515 $ 8,655 $ 26,789 $ 24,646</span></dd>
-    <dt>Answer key</dt><dd><span class="line">8,655</span> million · from <span class="line">Total programming and production costs $ 7,515 $ 8,655 $ 26,789 $ 24,646</span></dd>
+    <dt>Answer</dt><dd><span class="line">66</span> in millions, page 35</dd>
+    <dt>Its quote</dt><dd><span class="line">Stock-based compensation expense (70) (66) (202) (196)</span></dd>
+    <dt>Answer key</dt><dd><span class="line">66</span> million · from <span class="line">Stock-based compensation expense (70) (66) (202) (196)</span></dd>
   </dl>
 </div>
 <h3>Confident-wrong: passed every check, still wrong</h3><div class="ex">
@@ -198,12 +198,12 @@ picked by hand.</p>
 <dt>Error type</dt><dd>Wrong period or column</dd>  </dl>
 </div>
 <div class="ex">
-  <p class="meta">Pfizer Inc. · 10-Q · S6 Numbers in prose · FE-0707 <span class="tag bad" style="margin-left:6px">Confident-wrong</span></p>
-  <p class="q">“What was Pfizer Inc.&#39;s long-term equity securities held in trust as of December 31, 2025?”</p>
+  <p class="meta">Wells Fargo &amp; Company · 10-Q · S6 Numbers in prose · FE-0748 <span class="tag bad" style="margin-left:6px">Confident-wrong</span></p>
+  <p class="q">“What was Wells Fargo &amp; Company&#39;s net derivative gains (losses) from economic hedges related to mortgage loans held for sale and derivative loan commitments for the three months ended September 30, 2026?”</p>
   <dl>
-    <dt>Answer</dt><dd><span class="line">642</span> in millions, page 15</dd>
-    <dt>Its quote</dt><dd><span class="line">Equity securities with readily determinable fair values(b) 484 484 — — 642 642 — —</span></dd>
-    <dt>Answer key</dt><dd><span class="line">146</span> million · from <span class="line">(b)Long-term equity securities of $122 million as of September 27, 2026 and $146 million as of December 31, 2025 were held in restricted trusts for U.S. non-qualified employee benefit plans.</span></dd>
+    <dt>Answer</dt><dd><span class="line">-390</span> in millions, page 83</dd>
+    <dt>Its quote</dt><dd><span class="line">Net derivative gains (losses) from economic hedges (4) (390) 2 (471) 128</span></dd>
+    <dt>Answer key</dt><dd><span class="line">87</span> million · from <span class="line">(6)Includes net gains (losses) of $87 million and $116 million in the third quarter and first nine months of 2026, respectively, and $(6) million and $(20) million in the third quarter and first nine months of 2025, respectively, related to derivatives used as economic hedges of mortgage loans held for sale and derivative loan commitments.</span></dd>
 <dt>Error type</dt><dd>Wrong item</dd>  </dl>
 </div>
 <div class="ex">
